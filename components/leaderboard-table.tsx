@@ -39,7 +39,7 @@ function LeaderboardList({ ageCategory, gender }: { ageCategory: string; gender:
 
   const getRankIcon = (rank: number) => {
     if (rank === 1) return <Trophy className="h-5 w-5 text-accent" />
-    if (rank === 2 || rank === 3) return <Medal className="h-5 w-5 text-muted-foreground" />
+    if (rank !== 1 && rank <= 4) return <Medal className="h-5 w-5 text-muted-foreground" />
     return null
   }
 
@@ -70,7 +70,7 @@ function LeaderboardList({ ageCategory, gender }: { ageCategory: string; gender:
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       {getRankIcon(athlete.rank)}
-                      <span className={`text-lg font-bold ${athlete.rank <= 3 ? "text-accent" : ""}`}>
+                      <span className={`text-lg font-bold ${athlete.rank <= 4 ? "text-accent" : ""}`}>
                         {athlete.rank}
                       </span>
                     </div>

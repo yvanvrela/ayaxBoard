@@ -4,12 +4,13 @@ import { Analytics } from '@vercel/analytics/next'
 import { AppProvider } from '@/contexts/app-context'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { BackgroundImage } from '@/components/background-image'
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Leaderboard - Competición de Gimnasio',
+  title: 'Juegos AYAX 4.0',
   description: 'Tabla de puntuaciones de atletas',
   generator: 'v0.app',
   icons: {
@@ -38,7 +39,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased relative`}>
+        <BackgroundImage />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <AppProvider>
             {children}

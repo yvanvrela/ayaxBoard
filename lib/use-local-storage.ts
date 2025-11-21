@@ -3,17 +3,18 @@
 import { useState, useEffect } from 'react'
 
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T | ((val: T) => T)) => void] {
-  // Estado para almacenar nuestro valor - siempre inicia con initialValue para SSR
+  // Estado para almacenar nuestro valor
   const [storedValue, setStoredValue] = useState<T>(initialValue)
   const [mounted, setMounted] = useState(false)
 
-  // Solo leer del localStorage después de que el componente esté montado
+  // Leer del localStorage después de que el componente esté montado
   useEffect(() => {
     setMounted(true)
     try {
       const item = window.localStorage.getItem(key)
-      if (item) {
-        setStoredValue(JSON.parse(item))
+      if (item !== null) {
+        const parsed = JSON.parse(item)
+        setStoredValue(parsed)
       }
     } catch (error) {
       console.error(`Error reading localStorage key "${key}":`, error)
@@ -35,7 +36,8 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T 
     }
   }
 
-  // Durante SSR o antes de montar, devolver initialValue para evitar mismatch
+  // Durante SSR o antes de montar, devolver initialValue para evitar mismatch de hidratación
+  // Después del montaje, devolver storedValue que contiene los datos del localStorage
   return [mounted ? storedValue : initialValue, setValue]
 }
 

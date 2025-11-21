@@ -47,7 +47,7 @@ export function StatsCards() {
               <p className="text-sm font-medium text-muted-foreground">
                 {stat.label}
               </p>
-              <p className="text-2xl font-bold">{stat.value}</p>
+              <p className="text-2xl font-bold text-center">{stat.value}</p>
             </div>
           </Card>
         )
