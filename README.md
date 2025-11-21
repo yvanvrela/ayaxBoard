@@ -225,7 +225,7 @@ Este proyecto es privado.
 
 ## 👤 Autor
 
-Desarrollado para Juegos AYAX 4.0
+Desarrollado por yvanvrela
 
 ---
 
